@@ -8,7 +8,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm ci
       - name: Build the Docker image using Dockerfile.dev
         run: docker build . -f Dockerfile.dev -t daniel/docker-react-pr-test:$GITHUB_RUN_ID
       - name: Run npm tests
-        run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm run test -- --coverage
+        run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID CI=true npm run test -- --coverage
+        env:
+          CI: true
