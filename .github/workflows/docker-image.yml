@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: echo $GITHUB_JOB
+      - run: echo $GITHUB_RUN_ID
       # - name: Build the Docker image using Dockerfile.dev
       #   run: docker build . -f Dockerfile.dev -t daniel/docker-react-pr-test:${{ env.CURRENT_DATE }}
       # - run: echo ${{ env.CURRENT_DATE }}
