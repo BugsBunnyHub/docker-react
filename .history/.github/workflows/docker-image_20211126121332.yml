@@ -13,6 +13,6 @@ jobs:
       - run: echo ${{ env.CURRENT_DATE }}
       - name: Build the Docker image using Dockerfile.dev
         run: docker build . -f Dockerfile.dev -t daniel/docker-react-pr-test:${{ env.CURRENT_DATE }}
-      - run: echo ${{ env.CURRENT_DATE }}
+            - run: echo ${{ env.CURRENT_DATE }}
       - name: Run npm tests
         run: docker run daniel/docker-react-pr-test:${{ env.CURRENT_DATE }} npm run test -- --coverage
