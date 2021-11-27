@@ -9,10 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image using Dockerfile.dev
-        run: |
-         docker build . -f Dockerfile.dev -t daniel/docker-react-pr-test:$GITHUB_RUN_ID
-         docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm ci
-         docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm run build --if-present
-        #  docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm run test
-        env:
-          CI: true
+        run: docker build . -f Dockerfile.dev -t daniel/docker-react-pr-test:$GITHUB_RUN_ID
+      - name: npm CI
+        run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm ci
+      - name: npm build
+        run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm run build --if-present
+      # - name: npm test
+      #   run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm run test
+      #   env:
+      #     CI: true
