@@ -14,7 +14,9 @@ jobs:
         run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm ci
       - name: npm build
         run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm run build --if-present
+        env:
+          CI: true
       - name: npm test
-        run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm run test --watchAll=false
+        run: docker run daniel/docker-react-pr-test:$GITHUB_RUN_ID npm run test --CI=true --watchAll=false
         env:
           CI: true
